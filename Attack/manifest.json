@@ -1,0 +1,5 @@
+{
+  "sqli" : "sqlinjection.js",
+  "appexp":"appexception.js",
+  "XSS":"XSS.js"
+}
