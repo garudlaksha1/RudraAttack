@@ -38,8 +38,14 @@ for(var i=0; i<httpDataObject.query.length; i++){
 					    for(var detectionIndex = 0;detectionIndex<detectionArray.length;detectionIndex++){
 						    var regExp = new RegExp(detectionArray[detectionIndex]);
 						    if(str.match(regExp))
-							    console.log("infection found for path:"+urlObject.path+"For field:"+urlObject.field);   /*Here is issue. urlNew is always last urlNew that was updated. So we need new name everytime*/
+						{
+							    console.log("Issue")
+								console.log("Input:"+urlObject.path+" injected field was:"+urlObject.field);
+								console.log("Output:Error based on detection detected");
+								console.log("Message:Error based issue is detected");
+							//	console.log("infection found for path:"+urlObject.path+"For field:"+urlObject.field);   /*Here is issue. urlNew is always last urlNew that was updated. So we need new name everytime*/
     					}
+						}
 					  });
 					  res.on('error',function(err){
 					    console.log("Error while getting response.Error was:"+err);
@@ -56,17 +62,21 @@ for(var i=0; i<httpDataObject.query.length; i++){
 					
 					    res.on('end', function () {
               
-                if(issueDetection.performInfectionDetectionOnResponse(detectionArray,str))
-                   console.log("infection found for path:"+urlObject.path+"For field:"+urlObject.field);   /*Here is issue. urlNew is always last urlNew that was updated. So we need new name everytime*/
-                });
-                /*
+              
+                
 					      for(var detectionIndex = 0;detectionIndex<detectionArray.length;detectionIndex++){
 						      var regExp = new RegExp(detectionArray[detectionIndex]);
                 
 						      if(str.match(regExp))
-						        console.log("infection found for path:"+urlObject.path+"For field:"+urlObject.field);   
-		            }*/
-					    //});
+						{
+						       console.log("Issue")
+								console.log("Input:"+urlObject.path+" injected field was:"+urlObject.field);
+								console.log("Output:Error based on detection detected");
+								console.log("Message:Error based issue is detected");    
+							//console.log("infection found for path:"+urlObject.path+"For field:"+urlObject.field);  
+						} 
+		            }
+					    });
 					    res.on('error',function(err){
 					      console.log("Error while getting response.Error was:"+err);
 					    });
