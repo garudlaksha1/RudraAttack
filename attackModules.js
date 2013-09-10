@@ -3,6 +3,8 @@
 
 */
 var file = require('fs');
+var path = require('path');
+var configPath = path.join(path.dirname(file.realpathSync(__filename)), '/');
 
 /*
 	This method calls executeAttack module
@@ -11,8 +13,8 @@ var file = require('fs');
 */
 var giveDataAttack = function(httpData, attackName){
  
-  var url = require('./urlUtil.js');
-  file.readFile('./Attack/manifest.json', 'utf8', function (err,data) {
+  var url = require(configPath + 'urlUtil.js');
+  file.readFile(configPath + 'Attack/manifest.json', 'utf8', function (err,data) {
     if (err) {
       return console.log(err);
     }

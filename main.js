@@ -8,12 +8,14 @@
 
 */
 
-
-var url = require('./urlUtil.js');
-var parsejson = require('./readJson.js');
-var attackModules = require('./attackModules.js');
+var fs = require('fs');
+var path = require('path');
+var configPath = path.join(path.dirname(fs.realpathSync(__filename)), '/');
+var url = require(configPath + 'urlUtil.js');
+var parsejson = require(configPath + 'readJson.js');
+var attackModules = require(configPath + 'attackModules.js');
 var attackName = process.argv[2];
-var attackData = process.argv[3];
+var attackDataFile = process.argv[3];
 
 /*
 	This function checks whether main.js is called with corrrect paramaters
@@ -40,8 +42,8 @@ var selectAttack = function(attackList) {
       console.log(attackStr);
       process.exit(1);
     } else {
-      
-      var parsedJson = parsejson.getParsedjson('input.json', createOptions);
+      var filePath = configPath + attackDataFile;
+      var parsedJson = parsejson.getParsedjson(filePath, createOptions);
     }
   }
 }
@@ -54,7 +56,7 @@ var selectAttack = function(attackList) {
 */
 var createOptions = function(parsedJson) {
   urlObjs = url.createJsonUrl(parsedJson);
-  
+
   var httpData = [];
   for(var i=0; i<urlObjs.length; i++){
     var temp = new Object();
@@ -99,4 +101,4 @@ var createOptions = function(parsedJson) {
 
 
 
-attackList = parsejson.getParsedjson('./Attack/manifest.json', selectAttack);
+attackList = parsejson.getParsedjson(configPath + 'Attack/manifest.json', selectAttack);
